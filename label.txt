@@ -1,0 +1,6 @@
+BipUI Buttons
+RU	BipUI Buttons
+IT	BipUI Buttons
+ES	BipUI Buttons
+FR	BipUI Buttons
+DE	BipUI Buttons
