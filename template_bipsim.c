@@ -1,6 +1,8 @@
 /*
 	BipSIM template application
 	v.0.1
+
+	https://github.com/enricorov/bipsim-template
 	
 */
 
@@ -99,11 +101,11 @@ void show_screen(void *param0)
 void begin(app_data_t *app_data)
 {
 
-
+	// Do stuff
 
 }
 
-void end(void)
+	void end(void)
 {
 	app_data_t *app_data = getAppData();
 
