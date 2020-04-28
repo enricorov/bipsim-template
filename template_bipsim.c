@@ -99,36 +99,29 @@ void show_screen(void *param0)
 void begin(app_data_t *app_data)
 {
 
-	// Create layers here
 
 
 }
 
+void end(void)
+{
+	app_data_t *app_data = getAppData();
+
+	destroyViewport(app_data);
+	show_menu_animate(app_data->ret_f, (unsigned int)show_screen, ANIMATE_RIGHT);
+}
+
 void key_press_screen()
 {
-	#ifdef __SIMULATION__
-		app_data_t *app_data = get_app_data_ptr();
-		app_data_t **app_data_p = &app_data;
-	#else
-		app_data_t **app_data_p = get_ptr_temp_buf_2(); //	pointer to a pointer to screen data
-		app_data_t *app_data = *app_data_p;							//	pointer to screen data
-	#endif
-	//destroyViewport(getCurrentViewport(app_data));
-
-	// call the return function (usually this is the start menu), specify the address of the function of our application as a parameter
-	show_menu_animate(app_data->ret_f, (unsigned int)show_screen, ANIMATE_RIGHT);
+	app_data_t *app_data = getAppData();
+	
 };
 
 void refreshScreen()
 { // triggered by set_update_period
 
-	#ifdef __SIMULATION__
-		app_data_t *app_data = get_app_data_ptr();
-		app_data_t **app_data_p = &app_data;
-	#else
-		app_data_t **app_data_p = get_ptr_temp_buf_2(); //	pointer to a pointer to screen data
-		app_data_t *app_data = *app_data_p;							//	pointer to screen data
-	#endif
+	app_data_t *app_data = getAppData();
+
 	refreshLayer(getActiveLayer(app_data), 1);
 	vibrate(2, 50, 150);
 
@@ -136,14 +129,7 @@ void refreshScreen()
 
 int interactionHandler(void *param)
 {
-	#ifdef __SIMULATION__
-		app_data_t *app_data = get_app_data_ptr();
-		app_data_t **app_data_p = &app_data;
-	#else
-		app_data_t **app_data_p = get_ptr_temp_buf_2(); //	pointer to a pointer to screen data
-		app_data_t *app_data = *app_data_p;							//	pointer to screen data
-	#endif
-	
+	app_data_t *app_data = getAppData();	
 	struct gesture_ *gest = param;
 	int result = 0;
 
@@ -155,29 +141,29 @@ int interactionHandler(void *param)
 
 		break;
 	};
-	case GESTURE_SWIPE_RIGHT:
-	{ //	swipe to the right
-		// moveToLayer()
-		// show_menu_animate(app_data->ret_f, (unsigned int)show_screen, ANIMATE_RIGHT);
-		break;
-	};
-	case GESTURE_SWIPE_LEFT:
-	{ // swipe to the left
-		// actions when swiping left
-		break;
-	};
 	case GESTURE_SWIPE_UP:
-	{ // swipe up
-		// actions when swiping up
+	{
+		// implement your handler here	
 		break;
 	};
 	case GESTURE_SWIPE_DOWN:
-	{ // swipe down
+	{ 	
 
 		refreshLayer(getActiveLayer(app_data), 1); // manual refresh
 		set_update_period(0, 0);				   // removing scheduled refresh
 		break;
 	};
+	case GESTURE_SWIPE_RIGHT:
+	{	
+		// implement your handler here
+		break;
+	};
+	case GESTURE_SWIPE_LEFT:
+	{
+		// implement your handler here
+		break;
+	};
+
 	default:
 	{ // something went wrong ...
 

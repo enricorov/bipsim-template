@@ -23,7 +23,7 @@
 
 :: path to ResPack
 @SET PATH_RESPACK=ResPack
-@SET RESPACK_COMMAND=%PATH_RESPACK% -a %program_name%_%date%.res LightRES_noAPPS.res %PROGRAM_NAME%.elf
+@SET RESPACK_COMMAND=%PATH_RESPACK% -a %PROGRAM_NAME%_%DATE%_flashMe.res LightRES_noAPPS.res %PROGRAM_NAME%.elf
 
 @SET AS=%EABI%-as
 @SET LD=%EABI%-ld
